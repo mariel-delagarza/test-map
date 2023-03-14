@@ -63,7 +63,7 @@ function getImages() {
 
         for (let x in markers) {
           x = x.toLowerCase();
-          let fullUrl = "./images/" + x + ".svg";
+          let fullUrl = "images/" + x + ".svg";
           let filename2 = x
             .substring(x.lastIndexOf("/") + 1)
             .replace(/\.[^/.]+$/, ""); // File name no ext
