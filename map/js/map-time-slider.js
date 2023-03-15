@@ -482,7 +482,7 @@ function resizeHandler() {
     viewLegendButton.classList.remove("display-block");
     hideLegendButton.classList.add("display-none");
 
-    if (
+    /*if (
       typeof mapFrame != "undefined" &&
       mapFrame != null &&
       $("iframe")[0].clientWidth >= desktop
@@ -493,14 +493,14 @@ function resizeHandler() {
       viewFullScreenButton.classList.remove("display-none");
       viewFullScreenButton.classList.add("display-block");
       viewFullScreenButton.classList.add("iframe");
-    }
+    }*/
   }
 
   if (windowInnerWidth < desktop) {
     viewLegendButton.classList.remove("display-none");
     toolbox.classList.add("display-none");
     console.log("mobile");
-    if (
+    /*if (
       typeof mapFrame != "undefined" &&
       mapFrame != null &&
       $("iframe")[0].clientWidth < desktop
@@ -510,6 +510,6 @@ function resizeHandler() {
       viewFullScreenButton.classList.add("display-block");
       viewFullScreenButton.classList.add("full-screen-mobile");
       viewFullScreenButton.classList.remove("iframe");
-    }
+    }*/
   }
 }
