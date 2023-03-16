@@ -2,6 +2,14 @@ body {
   font-family: "Synthese", Arial, Helvetica, sans-serif;
 }
 
+.hide-legend-mobile {
+  top: 24px;
+  left: 24px;
+  right: auto;
+  position: relative;
+  max-width: 150px;
+}
+
 @media (max-width: 769px) {
   .box {
     display: grid;
@@ -16,13 +24,8 @@ body {
 
   .one {
     flex: 1;
-    /*max-width: 100%;
-    top: 0;
-    left: 0;*/
     max-width: 300px;
-    //background: pink;
     overflow: hidden;
-    //outline: 1px red solid;
   }
 
   .separator {
@@ -30,19 +33,16 @@ body {
   }
 
   .two {
-    /*max-width: 100%;
-    top: 50%;
-    left: 0;*/
     max-width: 300px;
-    //background: lightgreen;
     overflow: hidden;
-    //outline: 1px red solid;
   }
 }
 
 @media (max-width: 644px) {
   .toolbox {
     margin: auto;
+    display: block;
+    position: absolute;
   }
 
   .separator {
@@ -56,6 +56,11 @@ body {
     width: 300px;
     max-height: 250px;
     overflow-y: scroll;
+  }
+
+  .hide-legend-mobile {
+    left: 0;
+    margin: auto !important;
   }
 }
 
@@ -104,14 +109,6 @@ body {
 .view-legend,
 .full-screen-mobile {
   top: 75px !important;
-  left: 24px;
-  right: auto;
-  position: relative;
-  max-width: 150px;
-}
-
-.hide-legend-mobile {
-  top: 24px;
   left: 24px;
   right: auto;
   position: relative;
