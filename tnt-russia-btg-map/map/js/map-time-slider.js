@@ -48,7 +48,7 @@ const oms = new OverlappingMarkerSpiderfier(map, omsOptions);
 
 function getImages() {
   return new Promise((resolve, reject) => {
-    let url = "./js/markers.json";
+    let url = "tnt-russia-btg-map/map/js/markers.json";
     fetch(url)
       .then((res) => res.json())
       .then((markers) => {
@@ -63,7 +63,7 @@ function getImages() {
 
         for (let x in markers) {
           x = x.toLowerCase();
-          let fullUrl = "./images/" + x + ".svg";
+          let fullUrl = "tnt-russia-btg-map/map/images/" + x + ".svg";
           let filename2 = x
             .substring(x.lastIndexOf("/") + 1)
             .replace(/\.[^/.]+$/, ""); // File name no ext
@@ -442,10 +442,8 @@ function viewLegendHandler() {
   viewLegendButton.classList.add("display-none");
   hideLegendButton.classList.remove("display-none");
 
-  if (typeof mapFrame != "undefined" && mapFrame != null) {
-    viewFullScreenButton.classList.remove("display-block");
-    viewFullScreenButton.classList.add("display-none");
-  }
+  viewFullScreenButton.classList.remove("display-block");
+  viewFullScreenButton.classList.add("display-none");
 }
 
 function hideLegendHandler() {
@@ -455,9 +453,7 @@ function hideLegendHandler() {
   viewLegendButton.classList.remove("display-none");
   viewLegendButton.classList.add("display-block");
 
-  if (typeof mapFrame != "undefined" && mapFrame != null) {
-    viewFullScreenButton.classList.add("display-block");
-  }
+  viewFullScreenButton.classList.add("display-block");
 }
 
 /* ------------------------- Handle Window Resizing ------------------------- */
@@ -475,6 +471,8 @@ resizeHandler();
 function resizeHandler() {
   // get window width
   const windowInnerWidth = window.innerWidth;
+  const windowHeight = document.documentElement.clientHeight;
+  console.log(windowHeight);
 
   if (windowInnerWidth >= desktop) {
     toolbox.classList.remove("display-none");
@@ -482,34 +480,21 @@ function resizeHandler() {
     viewLegendButton.classList.remove("display-block");
     hideLegendButton.classList.add("display-none");
 
-    if (
-      typeof mapFrame != "undefined" &&
-      mapFrame != null &&
-      $("iframe")[0].clientWidth >= desktop
-    ) {
-      console.log("desktop");
-      console.log($("iframe")[0].clientWidth);
-      viewFullScreenButton.classList.remove("full-screen-mobile");
-      viewFullScreenButton.classList.remove("display-none");
-      viewFullScreenButton.classList.add("display-block");
-      viewFullScreenButton.classList.add("iframe");
-    }
+    console.log("desktop");
+    viewFullScreenButton.classList.remove("full-screen-mobile");
+    viewFullScreenButton.classList.remove("display-none");
+    viewFullScreenButton.classList.add("display-block");
+    viewFullScreenButton.classList.add("iframe");
   }
 
   if (windowInnerWidth < desktop) {
     viewLegendButton.classList.remove("display-none");
     toolbox.classList.add("display-none");
     console.log("mobile");
-    if (
-      typeof mapFrame != "undefined" &&
-      mapFrame != null &&
-      $("iframe")[0].clientWidth < desktop
-    ) {
-      console.log($("iframe")[0].clientWidth);
-      viewFullScreenButton.classList.remove("display-none");
-      viewFullScreenButton.classList.add("display-block");
-      viewFullScreenButton.classList.add("full-screen-mobile");
-      viewFullScreenButton.classList.remove("iframe");
-    }
+
+    viewFullScreenButton.classList.remove("display-none");
+    viewFullScreenButton.classList.add("display-block");
+    viewFullScreenButton.classList.add("full-screen-mobile");
+    viewFullScreenButton.classList.remove("iframe");
   }
 }
