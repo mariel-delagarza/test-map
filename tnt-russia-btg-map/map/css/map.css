@@ -54,7 +54,7 @@ body {
     grid-template-columns: 1fr;
     grid-gap: 5px;
     width: 300px;
-    max-height: 300px;
+    max-height: 265px;
     overflow-y: scroll;
   }
 }
