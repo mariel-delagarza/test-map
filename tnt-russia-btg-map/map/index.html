@@ -41,9 +41,12 @@
   <body>
     <div id="map" class="map" tabindex="0"></div>
     <button
-      class="full-screen iframe display-block"
-      onclick="fullScreenHandler()"
+      class="view-legend view-legend-desktop display-none"
+      onclick="viewLegendHandler()"
     >
+      View legend
+    </button>
+    <button class="full-screen display-none" onclick="fullScreenHandler()">
       View full-screen
     </button>
     <aside class="toolbox" id="toolbox">
@@ -89,7 +92,44 @@
             </div>
           </div>
         </section>
-
+        <div class="separator"></div>
+        <section class="legend">
+          <dl class="legend__list">
+            <dt class="legend__entry legend__entry-ukraine">
+              <img
+                src="images/UKR_Blank.svg"
+                alt="Ukrainian battlement marker"
+              />
+            </dt>
+            <dd>Ukrainian Unit</dd>
+            <dt class="legend__entry legend__entry-russia">
+              <img src="images/RU_Blank.svg" alt="Russian battlement marker" />
+            </dt>
+            <dd>Russian Unit</dd>
+            <dt
+              class="legend__entry legend__entry-line legend__entry-frontline"
+            >
+              <div class="legend__shape legend__shape-frontline"></div>
+            </dt>
+            <dd>Front Line</dd>
+            <dt class="legend__entry legend__entry-line legend__entry-rail">
+              <div class="legend__shape legend__shape-rail"></div>
+            </dt>
+            <dd>Major Rail Line</dd>
+            <dt class="legend__entry legend__entry-line legend__entry-road">
+              <div class="legend__shape legend__shape-road"></div>
+            </dt>
+            <dd>Major Road</dd>
+            <dt class="legend__entry legend__entry-line legend__entry-boundary">
+              <div class="legend__shape legend__shape-boundary"></div>
+            </dt>
+            <dd>Ukrainian Border</dd>
+            <dt class="legend__entry legend__entry-line legend__entry-disputed">
+              <div class="legend__shape legend__shape-disputed"></div>
+            </dt>
+            <dd>Controlled by Russia Before the February 2022 Invasion</dd>
+          </dl>
+        </section>
         <section class="contact">
           <p>
             See methodology
@@ -103,8 +143,12 @@
           <p>Contact: <a href="mailto:tnt@csis.org">tnt@csis.org</a></p>
         </section>
       </div>
+      <div class="button-container">
+        <button class="hide-legend display-none" onclick="hideLegendHandler()">
+          Hide legend
+        </button>
+      </div>
     </aside>
-
     <!-- * Comment in the map you want to see and comment the rest out -->
     <!-- <script src="js/map.js"></script> -->
     <script src="js/map-time-slider.js"></script>

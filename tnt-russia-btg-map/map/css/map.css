@@ -6,6 +6,10 @@ body {
 /*                           Handle Legend on Mobile                          */
 /* -------------------------------------------------------------------------- */
 
+.display-none {
+  display: none;
+}
+
 .display-block {
   display: block;
 }
@@ -25,6 +29,25 @@ body {
   right: auto;
 }
 
+.view-legend,
+.full-screen-mobile {
+  top: 75px !important;
+  left: 24px;
+  right: auto;
+  position: relative;
+  max-width: 150px;
+}
+
+.hide-legend {
+  right: auto;
+  position: absolute;
+  top: 100%;
+  position: relative;
+  max-width: 150px;
+}
+
+.view-legend,
+.hide-legend,
 .full-screen {
   background-color: #222;
   border-radius: 4px;
@@ -36,10 +59,12 @@ body {
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: 10px;
+  //max-width: 150px;
   min-height: 44px;
   min-width: 10px;
   overflow: hidden;
   padding: 9px 20px 8px;
+  //position: relative;
   text-align: center;
   text-transform: none;
   user-select: none;
