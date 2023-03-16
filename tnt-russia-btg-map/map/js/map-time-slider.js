@@ -62,8 +62,10 @@ function getImages() {
         let markerArr = [];
 
         for (let x in markers) {
-          x = x.toLowerCase();
-          let fullUrl = "/test-map/tnt-russia-btg-map/map/images/" + x + ".svg";
+          //x = x.toLowerCase();
+          let fullUrl = "/tnt-russia-btg-map/map/images/" + x + ".svg";
+          console.log(fullUrl);
+          console.log(x);
           let filename2 = x
             .substring(x.lastIndexOf("/") + 1)
             .replace(/\.[^/.]+$/, ""); // File name no ext
