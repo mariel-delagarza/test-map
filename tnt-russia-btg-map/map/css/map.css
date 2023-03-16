@@ -58,6 +58,22 @@ body {
     overflow-y: scroll;
   }
 }
+
+@media (max-width: 300px) {
+  .separator {
+    display: block;
+  }
+
+  .box {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+    width: 268px;
+    max-height: 250px;
+    overflow-y: scroll;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                           Handle Legend on Mobile                          */
 /* -------------------------------------------------------------------------- */
