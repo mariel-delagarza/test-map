@@ -63,7 +63,7 @@ function getImages() {
 
         for (let x in markers) {
           x = x.toLowerCase();
-          let fullUrl = "images/" + x + ".svg";
+          let fullUrl = "tnt-russia-btg-map/map/images/" + x + ".svg";
           console.log(fullUrl);
           console.log(x);
           let filename2 = x
