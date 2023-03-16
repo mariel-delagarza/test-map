@@ -62,12 +62,12 @@ function getImages() {
         let markerArr = [];
 
         for (let x in markers) {
-          x = x.toLowerCase();
+          xLower = x.toLowerCase();
           let fullUrl = "tnt-russia-btg-map/map/images/" + x + ".svg";
           console.log(fullUrl);
-          console.log(x);
-          let filename2 = x
-            .substring(x.lastIndexOf("/") + 1)
+          console.log(xLower);
+          let filename2 = xLower
+            .substring(xLower.lastIndexOf("/") + 1)
             .replace(/\.[^/.]+$/, ""); // File name no ext
 
           markerIcon = new IconBase({
