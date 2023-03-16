@@ -41,110 +41,121 @@
   <body>
     <div id="map" class="map" tabindex="0"></div>
     <button
-      class="view-legend view-legend-desktop display-none"
-      onclick="viewLegendHandler()"
+      class="hide-legend-mobile display-none"
+      onclick="hideLegendHandler()"
     >
+      Hide legend</button
+    ><button class="view-legend display-none" onclick="viewLegendHandler()">
       View legend
     </button>
     <button class="full-screen display-none" onclick="fullScreenHandler()">
       View full-screen
     </button>
+
     <aside class="toolbox" id="toolbox">
       <div class="box">
-        <header>
-          <h1>Russian and Ukrainian Force Disposition</h1>
-        </header>
-        <p class="description">
-          Use the timeline to see how the force disposition and front line have
-          changed over time. Click on a unit to learn more.
-        </p>
-        <p class="description">
-          Read CSIS analysis on the war in Ukraine
-          <a
-            class="description-link"
-            rel="noopener"
-            href="https://www.csis.org/analysis/ukrainian-innovation-war-attrition"
-            target="_blank"
-            >here</a
-          >.
-        </p>
-        <section id="time">
-          <div class="indicator">
-            <p>
-              Force disposition:
-              <span
-                class="date timeline-current-date timeline-header__value"
-              ></span>
-            </p>
-            <p><span></span></p>
-          </div>
-          <div class="timeline">
-            <div class="timeline-controls">
-              <button
-                id="timeline-btn"
-                class="timeline-btn play-btn control-btn"
-                aria-pressed="false"
-                aria-label="Play timeline"
-              ></button>
-            </div>
-            <div class="timeline-container">
-              <div class="timeline-bar"></div>
-            </div>
-          </div>
-        </section>
-        <div class="separator"></div>
-        <section class="legend">
-          <dl class="legend__list">
-            <dt class="legend__entry legend__entry-ukraine">
-              <img
-                src="tnt-russia-btg-map/map/images/UKR_Blank.svg"
-                alt="Ukrainian battlement marker"
-              />
-            </dt>
-            <dd>Ukrainian Unit</dd>
-            <dt class="legend__entry legend__entry-russia">
-              <img
-                src="tnt-russia-btg-map/map/images/RU_Blank.svg"
-                alt="Russian battlement marker"
-              />
-            </dt>
-            <dd>Russian Unit</dd>
-            <dt
-              class="legend__entry legend__entry-line legend__entry-frontline"
-            >
-              <div class="legend__shape legend__shape-frontline"></div>
-            </dt>
-            <dd>Front Line</dd>
-            <dt class="legend__entry legend__entry-line legend__entry-rail">
-              <div class="legend__shape legend__shape-rail"></div>
-            </dt>
-            <dd>Major Rail Line</dd>
-            <dt class="legend__entry legend__entry-line legend__entry-road">
-              <div class="legend__shape legend__shape-road"></div>
-            </dt>
-            <dd>Major Road</dd>
-            <dt class="legend__entry legend__entry-line legend__entry-boundary">
-              <div class="legend__shape legend__shape-boundary"></div>
-            </dt>
-            <dd>Ukrainian Border</dd>
-            <dt class="legend__entry legend__entry-line legend__entry-disputed">
-              <div class="legend__shape legend__shape-disputed"></div>
-            </dt>
-            <dd>Controlled by Russia Before the February 2022 Invasion</dd>
-          </dl>
-        </section>
-        <section class="contact">
-          <p>
-            See methodology
-            <a
-              rel="noopener"
-              target="_blank"
-              href="https://csis-website-prod.s3.amazonaws.com/s3fs-public/2023-02/230227_Jones_Ukraine_Methodology.pdf?VersionId=d9Ru3bb5NzJxgHQ.wFPobxnQZJ6FbJF7"
-              >here</a
-            >
+        <div class="one">
+          <header>
+            <h1>Russian and Ukrainian Force Disposition</h1>
+          </header>
+          <p class="description">
+            Use the timeline to see how the force disposition and front line
+            have changed over time. Click on a unit to learn more.
           </p>
-          <p>Contact: <a href="mailto:tnt@csis.org">tnt@csis.org</a></p>
-        </section>
+          <p class="description">
+            Read CSIS analysis on the war in Ukraine
+            <a
+              class="description-link"
+              rel="noopener"
+              href="https://www.csis.org/analysis/ukrainian-innovation-war-attrition"
+              target="_blank"
+              >here</a
+            >.
+          </p>
+          <section id="time">
+            <div class="indicator">
+              <p>
+                Force disposition:
+                <span
+                  class="date timeline-current-date timeline-header__value"
+                ></span>
+              </p>
+              <p><span></span></p>
+            </div>
+            <div class="timeline">
+              <div class="timeline-controls">
+                <button
+                  id="timeline-btn"
+                  class="timeline-btn play-btn control-btn"
+                  aria-pressed="false"
+                  aria-label="Play timeline"
+                ></button>
+              </div>
+              <div class="timeline-container">
+                <div class="timeline-bar"></div>
+              </div>
+            </div>
+          </section>
+          <div class="separator"></div>
+        </div>
+        <div class="two">
+          <section class="legend">
+            <dl class="legend__list">
+              <dt class="legend__entry legend__entry-ukraine">
+                <img
+                  src="tnt-russia-btg-map/map/images/UKR_Blank.svg"
+                  alt="Ukrainian battlement marker"
+                />
+              </dt>
+              <dd>Ukrainian Unit</dd>
+              <dt class="legend__entry legend__entry-russia">
+                <img
+                  src="tnt-russia-btg-map/map/images/RU_Blank.svg"
+                  alt="Russian battlement marker"
+                />
+              </dt>
+              <dd>Russian Unit</dd>
+              <dt
+                class="legend__entry legend__entry-line legend__entry-frontline"
+              >
+                <div class="legend__shape legend__shape-frontline"></div>
+              </dt>
+              <dd>Front Line</dd>
+              <dt class="legend__entry legend__entry-line legend__entry-rail">
+                <div class="legend__shape legend__shape-rail"></div>
+              </dt>
+              <dd>Major Rail Line</dd>
+              <dt class="legend__entry legend__entry-line legend__entry-road">
+                <div class="legend__shape legend__shape-road"></div>
+              </dt>
+              <dd>Major Road</dd>
+              <dt
+                class="legend__entry legend__entry-line legend__entry-boundary"
+              >
+                <div class="legend__shape legend__shape-boundary"></div>
+              </dt>
+              <dd>Ukrainian Border</dd>
+              <dt
+                class="legend__entry legend__entry-line legend__entry-disputed"
+              >
+                <div class="legend__shape legend__shape-disputed"></div>
+              </dt>
+              <dd>Controlled by Russia Before the February 2022 Invasion</dd>
+            </dl>
+          </section>
+          <section class="contact">
+            <p>
+              See methodology
+              <a
+                rel="noopener"
+                target="_blank"
+                href="https://csis-website-prod.s3.amazonaws.com/s3fs-public/2023-02/230227_Jones_Ukraine_Methodology.pdf?VersionId=d9Ru3bb5NzJxgHQ.wFPobxnQZJ6FbJF7"
+                >here</a
+              >
+            </p>
+            <p>Contact: <a href="mailto:tnt@csis.org">tnt@csis.org</a></p>
+          </section>
+        </div>
       </div>
       <div class="button-container">
         <button class="hide-legend display-none" onclick="hideLegendHandler()">

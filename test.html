@@ -1,0 +1,31 @@
+<style>
+  /* CSS */
+
+  .frame-container {
+    position: relative;
+    padding-bottom: 75%;
+    max-height: 1180px;
+    max-width: 1180px;
+    overflow: hidden;
+  }
+
+  #map-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 1180px;
+    max-height: 1180px;
+    outline: 1px red solid;
+  }
+</style>
+<div>
+  <div class="frame-container">
+    <iframe
+      id="map-frame"
+      src="https://mariel-delagarza.github.io/test-map/"
+      name="tnt-russia-btg-map"
+      scrolling="no"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>

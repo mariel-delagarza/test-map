@@ -2,6 +2,62 @@ body {
   font-family: "Synthese", Arial, Helvetica, sans-serif;
 }
 
+@media (max-width: 769px) {
+  .box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+    width: 620px;
+  }
+
+  .toolbox {
+    width: 800px;
+  }
+
+  .one {
+    flex: 1;
+    /*max-width: 100%;
+    top: 0;
+    left: 0;*/
+    max-width: 300px;
+    //background: pink;
+    overflow: hidden;
+    //outline: 1px red solid;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .two {
+    /*max-width: 100%;
+    top: 50%;
+    left: 0;*/
+    max-width: 300px;
+    //background: lightgreen;
+    overflow: hidden;
+    //outline: 1px red solid;
+  }
+}
+
+@media (max-width: 644px) {
+  .toolbox {
+    margin: auto;
+  }
+
+  .separator {
+    display: block;
+  }
+
+  .box {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+}
 /* -------------------------------------------------------------------------- */
 /*                           Handle Legend on Mobile                          */
 /* -------------------------------------------------------------------------- */
@@ -38,6 +94,14 @@ body {
   max-width: 150px;
 }
 
+.hide-legend-mobile {
+  top: 24px;
+  left: 24px;
+  right: auto;
+  position: relative;
+  max-width: 150px;
+}
+
 .hide-legend {
   right: auto;
   position: absolute;
@@ -48,6 +112,7 @@ body {
 
 .view-legend,
 .hide-legend,
+.hide-legend-mobile,
 .full-screen {
   background-color: #222;
   border-radius: 4px;
