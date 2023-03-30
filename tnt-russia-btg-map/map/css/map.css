@@ -6,14 +6,6 @@ body {
 /*                          Handle Dropdown on Mobile                         */
 /* -------------------------------------------------------------------------- */
 select {
-  /*background-image: linear-gradient(45deg, transparent 50%, blue 50%),
-    linear-gradient(135deg, blue 50%, transparent 50%),
-    linear-gradient(to right, skyblue, skyblue);
-  background-position: calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px), 100% 0;
-  background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
-  background-repeat: no-repeat;*/
-
   background-image: linear-gradient(
       45deg,
       transparent 50%,
@@ -80,7 +72,11 @@ select {
   right: auto;
 }
 
-@media (max-width: 769px) {
+.toolbox__close {
+  display: none;
+}
+
+/* @media (max-width: 769px) {
   .box {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -106,9 +102,9 @@ select {
     max-width: 300px;
     overflow: hidden;
   }
-}
+} */
 
-@media (max-width: 644px) {
+/* @media (max-width: 644px) {
   .toolbox {
     margin: auto;
     display: block;
@@ -132,14 +128,15 @@ select {
     left: 0;
     margin: auto !important;
   }
-}
+} */
 
-@media (max-width: 301px) {
+@media (max-width: 900px) {
   .separator {
     display: block;
   }
 
   .box {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 5px;
@@ -151,6 +148,17 @@ select {
 
   .toolbox {
     left: 16px;
+  }
+
+  .toolbox__close {
+    display: inline-block;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+    color: #080808;
+    background-color: transparent;
+    border: 0;
   }
 
   .leaflet-control {

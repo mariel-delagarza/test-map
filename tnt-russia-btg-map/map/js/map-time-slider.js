@@ -436,46 +436,22 @@ const timeline = {
 let toolbox = document.getElementById("toolbox");
 let viewLegendButton = document.querySelector(".view-legend");
 
-let hideLegendButton = document.querySelector(".hide-legend");
-let hideLegendButtonMobile = document.querySelector(".hide-legend-mobile");
+let hideLegendButton = document.querySelector(".toolbox__close");
+let hideLegendButtonMobile = document.querySelector(".toolbox__close");
 
 const desktop = 900;
 
 function viewLegendHandler() {
-  console.log("view");
-  const windowInnerWidth = window.innerWidth;
-
   toolbox.classList.remove("display-none");
   viewLegendButton.classList.remove("display-block");
   viewLegendButton.classList.add("display-none");
-
-  viewFullScreenButton.classList.remove("display-block");
-  viewFullScreenButton.classList.add("display-none");
-  console.log("test", windowInnerWidth);
-
-  if (windowInnerWidth <= desktop) {
-    hideLegendButtonMobile.classList.remove("display-none");
-    hideLegendButtonMobile.classList.add("display-block");
-  } else {
-    hideLegendButton.classList.remove("display-none");
-  }
 }
 
 function hideLegendHandler() {
-  console.log("hide");
-  const windowInnerWidth = window.innerWidth;
-
   toolbox.classList.add("display-none");
   viewLegendButton.classList.remove("display-none");
   viewLegendButton.classList.add("display-block");
   viewFullScreenButton.classList.add("display-block");
-
-  if (windowInnerWidth <= desktop) {
-    hideLegendButtonMobile.classList.remove("display-block");
-    hideLegendButtonMobile.classList.add("display-none");
-  } else {
-    hideLegendButton.classList.add("display-none");
-  }
 }
 
 function populateSelect() {
@@ -518,28 +494,18 @@ resizeHandler();
 function resizeHandler() {
   // get window width
   const windowInnerWidth = window.innerWidth;
-  console.log(windowInnerWidth);
-
-  //resizeObserver.observe(document.documentElement);
 
   if (windowInnerWidth >= desktop) {
     map.setView(new L.LatLng(48.981, 32.839), 6.5);
     toolbox.classList.remove("display-none");
     viewLegendButton.classList.add("display-none");
     viewLegendButton.classList.remove("display-block");
-    hideLegendButtonMobile.classList.add("display-none");
-    hideLegendButtonMobile.classList.remove("display-block");
-
-    hideLegendButton.classList.add("display-none");
   }
 
   if (windowInnerWidth < desktop) {
     viewLegendButton.classList.remove("display-none");
     toolbox.classList.add("display-none");
     console.log("mobile");
-    hideLegendButton.classList.add("display-none");
-    hideLegendButtonMobile.classList.remove("display-block");
-    hideLegendButtonMobile.classList.add("display-none");
   }
 }
 

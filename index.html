@@ -40,19 +40,12 @@
 
   <body>
     <div id="map" class="map" tabindex="0"></div>
-    <!--<button
-      class="hide-legend-mobile display-none"
-      id="hide-mobile"
-      onclick="hideLegendHandler()"
-    >
-      Hide legend
-    </button>-->
-    <button class="view-legend display-none" onclick="viewLegendHandler()">
+    <button class="view-legend display-none" onclick="viewLegendHandler()" aria-label="Open legend">
       View legend
     </button>
 
     <div class="custom-select">
-      <select name="dropdown" id="dropdown" class="dropdown"></select>
+      <select name="dropdown" id="dropdown" class="dropdown" aria-label="Force disposition date"></select>
     </div>
 
     <aside class="toolbox" id="toolbox">
@@ -61,6 +54,7 @@
           <header>
             <h1>Russian and Ukrainian Force Disposition</h1>
           </header>
+          <button class="toolbox__close" onclick="hideLegendHandler()" aria-label="close">X</button>
           <p id="timeline-description" class="description">
             Use the timeline to see how the force disposition and front line
             have changed over time. Click on a unit to learn more.
@@ -159,11 +153,6 @@
             <p>Contact: <a href="mailto:tnt@csis.org">tnt@csis.org</a></p>
           </section>
         </div>
-      </div>
-      <div class="button-container">
-        <button class="hide-legend display-none" onclick="hideLegendHandler()">
-          Hide legend
-        </button>
       </div>
     </aside>
     <!-- * Comment in the map you want to see and comment the rest out -->
