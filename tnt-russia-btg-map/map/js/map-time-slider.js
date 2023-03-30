@@ -17,11 +17,11 @@ const cartoSourceLines = "tnt_front_lines_time_slider";
 var basemap = L.tileLayer(basemapURL, {});
 
 var map = L.map("map", {
-  center: [48.981, 32.839],
-  zoom: 6.5,
+  center: [49.19953923337175, 34.57093513324714],
+  zoom: 5.5,
   maxZoom: 20,
   scrollWheelZoom: true,
-  minZoom: 6,
+  minZoom: 4,
   zoomControl: false,
   scrollWheelZoom: true,
   zoomSnap: 0,
@@ -523,6 +523,7 @@ function resizeHandler() {
   //resizeObserver.observe(document.documentElement);
 
   if (windowInnerWidth >= desktop) {
+    map.setView(new L.LatLng(48.981, 32.839), 6.5);
     toolbox.classList.remove("display-none");
     viewLegendButton.classList.add("display-none");
     viewLegendButton.classList.remove("display-block");
