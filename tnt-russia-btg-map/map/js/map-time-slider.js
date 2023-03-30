@@ -89,6 +89,9 @@ function getImages() {
 let markersByDate = {};
 let markerLayerGroups = [];
 let dates = [];
+// get window width
+let windowInnerWidth = window.innerWidth;
+const desktop = 900
 
 Promise.all([getImages()]).then((markerArr) => {
   let sql = new cartodb.SQL({ user: "csis" });
@@ -158,7 +161,13 @@ Promise.all([getImages()]).then((markerArr) => {
         markerLayerGroups.push(layerArray);
       }
 
-      map.addLayer(markerLayerGroups[0]);
+      if (windowInnerWidth >= desktop) {
+        map.addLayer(markerLayerGroups[0]);
+      }
+    
+      if (windowInnerWidth < desktop) {
+        map.addLayer(markerLayerGroups[markerLayerGroups.length - 1]);
+      }
 
       /* ----------------- Set up spiderfier event listeners ---------------- */
       oms.addListener("click", function (marker) {
@@ -206,7 +215,13 @@ fetch(
         })
       );
     });
-    map.addLayer(lineArr[0]);
+    if (windowInnerWidth >= desktop) {
+      map.addLayer(lineArr[0]);
+    }
+  
+    if (windowInnerWidth < desktop) {
+      map.addLayer(lineArr[lineArr.length - 1]);
+    }
   });
 
 /* -------------------------------------------------------------------------- */
@@ -439,8 +454,6 @@ let viewLegendButton = document.querySelector(".view-legend");
 let hideLegendButton = document.querySelector(".toolbox__close");
 let hideLegendButtonMobile = document.querySelector(".toolbox__close");
 
-const desktop = 900;
-
 function viewLegendHandler() {
   toolbox.classList.remove("display-none");
   viewLegendButton.classList.remove("display-block");
@@ -451,7 +464,6 @@ function hideLegendHandler() {
   toolbox.classList.add("display-none");
   viewLegendButton.classList.remove("display-none");
   viewLegendButton.classList.add("display-block");
-  viewFullScreenButton.classList.add("display-block");
 }
 
 function populateSelect() {
@@ -459,8 +471,10 @@ function populateSelect() {
 
   dates.forEach((option, i) => {
     const optionEl = document.createElement("option");
+    removeLayerGroup(i)
     if (i === len - 1) {
       optionEl.selected = " selected";
+      addLayerGroup(i)
     }
     optionEl.value = i;
     optionEl.text = formatDate(option);
@@ -492,8 +506,7 @@ resizeHandler();
 
 // calculate size
 function resizeHandler() {
-  // get window width
-  const windowInnerWidth = window.innerWidth;
+  windowInnerWidth = window.innerWidth
 
   if (windowInnerWidth >= desktop) {
     map.setView(new L.LatLng(48.981, 32.839), 6.5);
@@ -505,7 +518,6 @@ function resizeHandler() {
   if (windowInnerWidth < desktop) {
     viewLegendButton.classList.remove("display-none");
     toolbox.classList.add("display-none");
-    console.log("mobile");
   }
 }
 
