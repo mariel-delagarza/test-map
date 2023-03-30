@@ -40,15 +40,20 @@
 
   <body>
     <div id="map" class="map" tabindex="0"></div>
-    <button
+    <!--<button
       class="hide-legend-mobile display-none"
       id="hide-mobile"
       onclick="hideLegendHandler()"
     >
-      Hide legend</button
-    ><button class="view-legend display-none" onclick="viewLegendHandler()">
+      Hide legend
+    </button>-->
+    <button class="view-legend display-none" onclick="viewLegendHandler()">
       View legend
     </button>
+
+    <div class="custom-select">
+      <select name="dropdown" id="dropdown" class="dropdown"></select>
+    </div>
 
     <aside class="toolbox" id="toolbox">
       <div class="box">

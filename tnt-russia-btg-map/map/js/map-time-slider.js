@@ -98,7 +98,7 @@ Promise.all([getImages()]).then((markerArr) => {
       const rows = data.rows;
       let latLngArr = [];
 
-      /* ---- Build markers, markersByDate, dates; add each marker to spiderfier --- */
+      /* Build markers, markersByDate, dates; add each marker to spiderfier */
       rows.forEach((row) => {
         let latLong = row.lat + ", " + row.long;
         let markerName = row.type.toLowerCase();
@@ -142,13 +142,17 @@ Promise.all([getImages()]).then((markerArr) => {
         }
       });
 
-      /* -------------------- Setup timeline in the map legend -------------------- */
+      /* ----------------- Setup timeline in the map legend ----------------- */
       dates.sort();
       len = dates.length;
 
       timeline.setupTimeline({ start: dates[0], end: dates[len - 1] });
 
-      /* ---------------------- Build the marker layer groups --------------------- */
+      /* ------------ Create dropdown; CSS only shows on mobile ------------ */
+
+      populateSelect();
+
+      /* ------------------- Build the marker layer groups ------------------ */
       for (array in markersByDate) {
         layerArray = L.layerGroup(markersByDate[array]);
         markerLayerGroups.push(layerArray);
@@ -156,7 +160,7 @@ Promise.all([getImages()]).then((markerArr) => {
 
       map.addLayer(markerLayerGroups[0]);
 
-      /* -------------------- Set up spiderfier event listeners ------------------- */
+      /* ----------------- Set up spiderfier event listeners ---------------- */
       oms.addListener("click", function (marker) {
         if (marker.data.formal_name === "") {
           popup.setContent(
@@ -435,10 +439,7 @@ let viewLegendButton = document.querySelector(".view-legend");
 let hideLegendButton = document.querySelector(".hide-legend");
 let hideLegendButtonMobile = document.querySelector(".hide-legend-mobile");
 
-let viewFullScreenButton = document.querySelector(".full-screen");
-
-const desktop = 769;
-const small = 600;
+const desktop = 900;
 
 function viewLegendHandler() {
   console.log("view");
@@ -477,6 +478,34 @@ function hideLegendHandler() {
   }
 }
 
+function populateSelect() {
+  const select = document.getElementById("dropdown");
+
+  dates.forEach((option, i) => {
+    const optionEl = document.createElement("option");
+    if (i === len - 1) {
+      optionEl.selected = " selected";
+    }
+    optionEl.value = i;
+    optionEl.text = formatDate(option);
+    select.appendChild(optionEl);
+  });
+
+  select.addEventListener("change", function () {
+    map.closePopup();
+
+    let dateIndex = this.value;
+
+    for (i = 0; i < len; i++) {
+      if (i != dateIndex) {
+        removeLayerGroup(i);
+      }
+    }
+
+    addLayerGroup(dateIndex);
+  });
+}
+
 /* ------------------------- Handle Window Resizing ------------------------- */
 
 // observe window resize
@@ -489,7 +518,6 @@ resizeHandler();
 function resizeHandler() {
   // get window width
   const windowInnerWidth = window.innerWidth;
-  const windowHeight = document.documentElement.clientHeight;
   console.log(windowInnerWidth);
 
   //resizeObserver.observe(document.documentElement);
@@ -502,12 +530,6 @@ function resizeHandler() {
     hideLegendButtonMobile.classList.remove("display-block");
 
     hideLegendButton.classList.add("display-none");
-
-    console.log("desktop");
-    viewFullScreenButton.classList.remove("full-screen-mobile");
-    viewFullScreenButton.classList.remove("display-none");
-    viewFullScreenButton.classList.add("display-block");
-    viewFullScreenButton.classList.add("iframe");
   }
 
   if (windowInnerWidth < desktop) {
@@ -517,9 +539,34 @@ function resizeHandler() {
     hideLegendButton.classList.add("display-none");
     hideLegendButtonMobile.classList.remove("display-block");
     hideLegendButtonMobile.classList.add("display-none");
-    viewFullScreenButton.classList.remove("display-none");
-    viewFullScreenButton.classList.add("display-block");
-    viewFullScreenButton.classList.add("full-screen-mobile");
-    viewFullScreenButton.classList.remove("iframe");
   }
+}
+
+function formatDate(currentDate) {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  dateInSec = new Date(currentDate);
+
+  formattedDate = new Date(
+    dateInSec.getUTCFullYear(),
+    dateInSec.getUTCMonth(),
+    dateInSec.getUTCDate()
+  );
+
+  return `${
+    monthNames[formattedDate.getMonth()]
+  } ${formattedDate.getFullYear()}`;
 }
