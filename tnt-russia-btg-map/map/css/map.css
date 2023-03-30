@@ -35,7 +35,7 @@ select {
   position: absolute;
   right: auto;
   left: 24px;
-  top: 125px;
+  top: 120px;
   display: none;
   box-sizing: border-box;
   width: 150px;
@@ -144,9 +144,9 @@ select {
     grid-template-columns: 1fr;
     grid-gap: 5px;
     width: 250px;
-    max-height: 190px;
+    max-height: 500px;
     overflow-y: scroll;
-    //margin: 0 0 16px;
+    margin: 0 0 16px;
   }
 
   .toolbox {
@@ -154,6 +154,18 @@ select {
   }
 
   .leaflet-control {
+    display: none;
+  }
+
+  #time {
+    display: none;
+  }
+
+  #timeline-description {
+    display: none;
+  }
+
+  .separator {
     display: none;
   }
 }
@@ -177,7 +189,7 @@ select {
 
 .view-legend,
 .full-screen-mobile {
-  top: 75px !important;
+  top: 69px !important;
   left: 24px;
   right: auto;
   position: relative;
