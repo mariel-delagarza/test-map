@@ -491,7 +491,6 @@ function populateSelect() {
         removeLayerGroup(i);
       }
     }
-
     addLayerGroup(dateIndex);
   });
 }
