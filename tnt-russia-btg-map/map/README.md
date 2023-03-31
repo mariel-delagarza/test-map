@@ -75,7 +75,7 @@ We’ll need several variables to use with the markers and our timeline later on
 
 Note: `markerLayerGroups`, `dates`, and the array of front lines will be created in the same date-order, so if the index of `2/1/23` is `0`, the matching `markerLayerGroup` and `frontline` will also have index `0`. This is important for the timeline slider to function properly.
 
-### **Build markers, markersByDate, dates; add each marker to spiderfier**
+### Build markers, markersByDate, dates; add each marker to spiderfier
 
 - After setting those up, we’ll run `getImages()` from the above section so we have our marker objects ready. Then, we use the [`cartodb` API](https://carto.com/blog/the-versatility-of-retreiving-and-rendering-geospatial) to access the Carto dataset with the marker information. Before manipulating it, we set up `latLngArr` to keep track of all the latitude and longitude pairs in the dataset so we can identify duplicates.
 
@@ -89,15 +89,15 @@ Note: `markerLayerGroups`, `dates`, and the array of front lines will be created
 
 - Reference: [https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet](https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet)
 
-### **Setup timeline in the map legend**
+### Setup timeline in the map legend
 
 - Now that the markers are set up, we’ll sort the dates array and grab its length. Sorting accounts for whether the data in the dataset is not in the exact order we need. We use `dates` and that length to set up the timeline in the legend. `setUpTimeline` is a property on the `timeline` object, defined below.
 
-### **Build the marker layer groups**
+### Build the marker layer groups
 
 - For every array in the `markersByDate` object, create a `layerGroup` — remember every marker is its own layer. Take that `layerGroup` and add it to the `markerLayerGroups` array. We’re creating an array that has one layer group for each date. Add the first group to the map (see note above: `0` should be the oldest date).
 
-### **Set up spiderfier event listeners**
+### Set up spiderfier event listeners
 
 - Reference: [https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet](https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet)
 
@@ -191,3 +191,37 @@ Make the pips that have values clickable and add an event listener that will set
 ### stopTimeline
 
 - use `clearInterval` and set `playing` to false. Remove the “pause button” class and add the “play button” class. This is used when we set up the timeline and when the timeline reaches its last date.
+
+---
+
+## Show/Hide Legend on Mobile
+
+Both `viewLegendHandler()` and `hideLegendHandler()` are called in the HTML as part of their respective elements. The functions grab the elements via query selectors and apply or remove `display-block` and `diplay-none` as needed.
+
+---
+
+## Dropdown menu for mobile
+
+Because the timeline functionality isn't practical on a small mobile screen, it's removed from the legend via CSS and instead we create a dropdown to allow users to switch between dates. This is started by creating a `<select>` element.
+
+### Setup dropdown when map created
+
+- CSS hides the dropdown on desktop screens, which allows `populateSelect()` to be called when the map is created, regardless of screen size.
+- It iterates over each date and uses the date to create an `<option>`.
+- If the date is the last one in the array, that's the layer group that will be added to the map. We want it to load showing the user the most recent data first.
+- An event listener is added to the dropdown, but the function is defined outside of this `populateSelect()` function because we need to call it multiple times and don't want the dropdown to end up with duplicate options.
+
+### Dropdown event handler
+
+- Start by closing any open popups, the way we do with the timeline.
+- Get the current dropdown value - we know this is the index value of our date.
+- Use a for loop for the length of the dates array -- remove any layer groups that don't match our current date index, add the layer group that does match.
+- This function has access to `dates` as part of `popopulateSelect()`. It's important that we _return that current date value_ so we can use it elsewhere.
+- This function is used in `timeline.updateCurrentDate()` and `resizeHandler()`.
+
+### Update dropdown choice when timeline choice changes
+
+- `selectChangeText()` updates the dropdown's selected option based on what the user moves the timeline to on desktop.
+- It works together with the `selectChangeHandler()` to make sure we see the correct date on the timeline.
+- In the `resizeHandler()` below, the change handler is used to set the current date on the timeline. So when we select a date in the dropdown in mobile, and we resize it to desktop, that change handler will be called and return the date its set to.
+- When the tim

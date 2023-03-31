@@ -471,10 +471,11 @@ function hideLegendHandler() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                       Setup dropdown menu for mobile                       */
+/*                          Dropdown menu for mobile                          */
 /* -------------------------------------------------------------------------- */
 const select = document.getElementById("dropdown");
 
+/* --------------------- Setup dropdown when map created -------------------- */
 function populateSelect() {
   dates.forEach((option, i) => {
     const optionEl = document.createElement("option");
@@ -498,6 +499,7 @@ function selectChangeHandler() {
   map.closePopup();
 
   let dateIndex = select.value;
+
   for (i = 0; i < len; i++) {
     if (i != dateIndex) {
       removeLayerGroup(i);
