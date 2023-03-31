@@ -88,6 +88,7 @@ function getImages() {
 let markersByDate = {};
 let markerLayerGroups = [];
 let dates = [];
+
 // get window width
 let windowInnerWidth = window.innerWidth;
 const desktop = 900;
