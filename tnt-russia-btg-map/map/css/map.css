@@ -58,14 +58,6 @@ select {
 /*                           Handle Legend on Mobile                          */
 /* -------------------------------------------------------------------------- */
 
-.hide-legend-mobile {
-  top: 24px;
-  left: 24px;
-  right: auto;
-  position: relative;
-  max-width: 150px;
-}
-
 .toolbox {
   top: 75px !important;
   left: 24px;
@@ -75,60 +67,6 @@ select {
 .toolbox__close {
   display: none;
 }
-
-/* @media (max-width: 769px) {
-  .box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 5px;
-    width: 620px;
-  }
-
-  .toolbox {
-    width: 800px;
-  }
-
-  .one {
-    flex: 1;
-    max-width: 300px;
-    overflow: hidden;
-  }
-
-  .separator {
-    display: none;
-  }
-
-  .two {
-    max-width: 300px;
-    overflow: hidden;
-  }
-} */
-
-/* @media (max-width: 644px) {
-  .toolbox {
-    margin: auto;
-    display: block;
-    position: absolute;
-  }
-
-  .separator {
-    display: block;
-  }
-
-  .box {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 5px;
-    width: 300px;
-    max-height: 250px;
-    overflow-y: scroll;
-  }
-
-  .hide-legend-mobile {
-    left: 0;
-    margin: auto !important;
-  }
-} */
 
 @media (max-width: 900px) {
   .separator {
@@ -186,36 +124,7 @@ select {
   display: block;
 }
 
-.iframe {
-  top: 0;
-  right: 11px;
-  position: absolute;
-  margin-top: 20px;
-  display: block;
-  max-width: 180px;
-}
-
-.view-legend,
-.full-screen-mobile {
-  top: 69px !important;
-  left: 24px;
-  right: auto;
-  position: relative;
-  max-width: 150px;
-}
-
-.hide-legend {
-  right: auto;
-  position: absolute;
-  top: 100%;
-  position: relative;
-  max-width: 150px;
-}
-
-.view-legend,
-.hide-legend,
-.hide-legend-mobile,
-.full-screen {
+.view-legend {
   background-color: #222;
   border-style: none;
   box-sizing: border-box;
@@ -223,17 +132,20 @@ select {
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
+  left: 24px;
   line-height: 1.5;
   margin-bottom: 10px;
-  //max-width: 150px;
+  max-width: 150px;
   min-height: 44px;
   min-width: 10px;
   overflow: hidden;
   padding: 9px 20px 8px;
-  //position: relative;
+  position: relative;
+  right: auto;
   text-align: center;
   text-transform: none;
   text-decoration: none;
+  top: 69px !important;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
