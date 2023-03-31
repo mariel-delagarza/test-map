@@ -153,7 +153,7 @@ Promise.all([getImages()]).then((markerArr) => {
 
       /* ------------ Create dropdown; CSS only shows on mobile ------------ */
 
-      populateSelect();
+      populateSelect(dates[0]);
 
       /* ------------------- Build the marker layer groups ------------------ */
       for (array in markersByDate) {
@@ -281,6 +281,8 @@ const timeline = {
 
   updateCurrentDate: function (currentDate) {
     this.currentDateEl.innerHTML = `${this.formatDate(currentDate)}`;
+    selectChangeHandler();
+    selectChangeText(currentDate, dates);
   },
 
   onChange: function onChange() {
@@ -471,9 +473,9 @@ function hideLegendHandler() {
 /* -------------------------------------------------------------------------- */
 /*                       Setup dropdown menu for mobile                       */
 /* -------------------------------------------------------------------------- */
-function populateSelect() {
-  const select = document.getElementById("dropdown");
+const select = document.getElementById("dropdown");
 
+function populateSelect() {
   dates.forEach((option, i) => {
     const optionEl = document.createElement("option");
     removeLayerGroup(i);
@@ -488,18 +490,28 @@ function populateSelect() {
     select.appendChild(optionEl);
   });
 
-  select.addEventListener("change", function () {
-    map.closePopup();
+  select.addEventListener("change", selectChangeHandler);
+}
 
-    let dateIndex = this.value;
+/* ------------------------- Dropdown event handler ------------------------- */
+function selectChangeHandler() {
+  map.closePopup();
 
-    for (i = 0; i < len; i++) {
-      if (i != dateIndex) {
-        removeLayerGroup(i);
-      }
+  let dateIndex = select.value;
+  for (i = 0; i < len; i++) {
+    if (i != dateIndex) {
+      removeLayerGroup(i);
     }
-    addLayerGroup(dateIndex);
-  });
+  }
+
+  addLayerGroup(dateIndex);
+
+  return dates[dateIndex];
+}
+
+/* ----------- Update Dropdown choice when timeline choice changes ---------- */
+function selectChangeText(currentDate, dates) {
+  select.value = dates.indexOf(currentDate);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -518,12 +530,14 @@ function resizeHandler() {
 
   if (windowInnerWidth >= desktop) {
     map.setView(new L.LatLng(48.981, 32.839), 6.5);
+    timeline.el.noUiSlider.set(selectChangeHandler());
     toolbox.classList.remove("display-none");
     viewLegendButton.classList.add("display-none");
     viewLegendButton.classList.remove("display-block");
   }
 
   if (windowInnerWidth < desktop) {
+    map.setView(new L.LatLng(49.19953923337175, 34.57093513324714), 5.5);
     viewLegendButton.classList.remove("display-none");
     toolbox.classList.add("display-none");
   }
