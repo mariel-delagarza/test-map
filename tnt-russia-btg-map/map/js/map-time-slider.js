@@ -1,7 +1,6 @@
 /* -------------------------------------------------------------------------- */
-/*               Mapbox URL, info to connect to Carto datasets              */
+/*                Mapbox URL, info to connect to Carto datasets               */
 /* -------------------------------------------------------------------------- */
-
 const basemapURL =
   "https://api.mapbox.com/styles/v1/ilabmedia/clesm3yxm000a01mtyumq5sp4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaWxhYm1lZGlhIiwiYSI6ImNpbHYycXZ2bTAxajZ1c2tzdWU1b3gydnYifQ.AHxl8pPZsjsqoz95-604nw";
 
@@ -91,7 +90,7 @@ let markerLayerGroups = [];
 let dates = [];
 // get window width
 let windowInnerWidth = window.innerWidth;
-const desktop = 900
+const desktop = 900;
 
 Promise.all([getImages()]).then((markerArr) => {
   let sql = new cartodb.SQL({ user: "csis" });
@@ -164,7 +163,7 @@ Promise.all([getImages()]).then((markerArr) => {
       if (windowInnerWidth >= desktop) {
         map.addLayer(markerLayerGroups[0]);
       }
-    
+
       if (windowInnerWidth < desktop) {
         map.addLayer(markerLayerGroups[markerLayerGroups.length - 1]);
       }
@@ -218,7 +217,7 @@ fetch(
     if (windowInnerWidth >= desktop) {
       map.addLayer(lineArr[0]);
     }
-  
+
     if (windowInnerWidth < desktop) {
       map.addLayer(lineArr[lineArr.length - 1]);
     }
@@ -471,10 +470,10 @@ function populateSelect() {
 
   dates.forEach((option, i) => {
     const optionEl = document.createElement("option");
-    removeLayerGroup(i)
+    removeLayerGroup(i);
     if (i === len - 1) {
       optionEl.selected = " selected";
-      addLayerGroup(i)
+      addLayerGroup(i);
     }
     optionEl.value = i;
     optionEl.text = formatDate(option);
@@ -506,7 +505,7 @@ resizeHandler();
 
 // calculate size
 function resizeHandler() {
-  windowInnerWidth = window.innerWidth
+  windowInnerWidth = window.innerWidth;
 
   if (windowInnerWidth >= desktop) {
     map.setView(new L.LatLng(48.981, 32.839), 6.5);
