@@ -161,6 +161,7 @@ Promise.all([getImages()]).then((markerArr) => {
         markerLayerGroups.push(layerArray);
       }
 
+      /* -- Add starting marker layerGroup to map depending on window size -- */
       if (windowInnerWidth >= desktop) {
         map.addLayer(markerLayerGroups[0]);
       }
@@ -215,6 +216,7 @@ fetch(
         })
       );
     });
+    /* ------- Add starting front line to map depending on window size ------ */
     if (windowInnerWidth >= desktop) {
       map.addLayer(lineArr[0]);
     }
@@ -466,6 +468,9 @@ function hideLegendHandler() {
   viewLegendButton.classList.add("display-block");
 }
 
+/* -------------------------------------------------------------------------- */
+/*                       Setup dropdown menu for mobile                       */
+/* -------------------------------------------------------------------------- */
 function populateSelect() {
   const select = document.getElementById("dropdown");
 
@@ -477,7 +482,9 @@ function populateSelect() {
       addLayerGroup(i);
     }
     optionEl.value = i;
-    optionEl.text = formatDate(option);
+
+    // call format function in the timeline object to avoid duplicating it
+    optionEl.text = timeline.formatDate(option);
     select.appendChild(optionEl);
   });
 
@@ -495,7 +502,9 @@ function populateSelect() {
   });
 }
 
-/* ------------------------- Handle Window Resizing ------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                           Handle Window Resizing                           */
+/* -------------------------------------------------------------------------- */
 
 // observe window resize
 window.addEventListener("resize", resizeHandler);
@@ -518,33 +527,4 @@ function resizeHandler() {
     viewLegendButton.classList.remove("display-none");
     toolbox.classList.add("display-none");
   }
-}
-
-function formatDate(currentDate) {
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  dateInSec = new Date(currentDate);
-
-  formattedDate = new Date(
-    dateInSec.getUTCFullYear(),
-    dateInSec.getUTCMonth(),
-    dateInSec.getUTCDate()
-  );
-
-  return `${
-    monthNames[formattedDate.getMonth()]
-  } ${formattedDate.getFullYear()}`;
 }
