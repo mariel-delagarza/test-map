@@ -221,7 +221,13 @@ Because the timeline functionality isn't practical on a small mobile screen, it'
 
 ### Update dropdown choice when timeline choice changes
 
-- `selectChangeText()` updates the dropdown's selected option based on what the user moves the timeline to on desktop.
-- It works together with the `selectChangeHandler()` to make sure we see the correct date on the timeline.
-- In the `resizeHandler()` below, the change handler is used to set the current date on the timeline. So when we select a date in the dropdown in mobile, and we resize it to desktop, that change handler will be called and return the date its set to.
-- When the tim
+- When the timeline's `updateCurrentDate` function is called, it runs `selectChangeHandler()` and `selectChangeText(currentDate, dates)`.
+- `selectChangeText(currentDate, dates)` updates the dropdown's selected option based on what the user moves the timeline to on desktop.
+- `selectChangeHandler()` updates what's on the map based on what is selected in the dropdown. It also returns `dates[dateIndex]` for use later.
+
+## Handle Window Resizing
+
+- The `resizeHandler()` performs multiple functions, depending on whether the window size is desktop (>900) or not.
+- Because `resizeHandler()` was added as an event listener to `window`, it runs every time the window size is changed.
+- If the window is larger than 900px, the center of the map and the zoom is reset, the legend is made visible, and the view legend button is removed. The timeline's value is set to the `dates[dateIndex]` it gets back from `selectChangeHandler()`. This is the second part of what keeps the timeline and dropdown synced.
+- If the window is smaller than 900px, the center of the map and zoom is reset, the view legend button is made visible, and the legend is hidden.
