@@ -221,13 +221,10 @@ Because the timeline functionality isn't practical on a small mobile screen, it'
 
 ### Update dropdown choice when timeline choice changes
 
-- When the timeline's `updateCurrentDate` function is called, it runs `selectChangeHandler()` and `selectChangeText(currentDate, dates)`.
-- `selectChangeText(currentDate, dates)` updates the dropdown's selected option based on what the user moves the timeline to on desktop.
-- `selectChangeHandler()` updates what's on the map based on what is selected in the dropdown. It also returns `dates[dateIndex]` for use later.
+- `selectChangeText()` updates the dropdown's selected option based on what the user moves the timeline to on desktop.It is called at the same time as `selectChangeHander()` -- this keeps the dropdown and what's on the map in sync when the update is coming from a change to the timeline.
 
 ## Handle Window Resizing
 
-- The `resizeHandler()` performs multiple functions, depending on whether the window size is desktop (>900) or not.
-- Because `resizeHandler()` was added as an event listener to `window`, it runs every time the window size is changed.
-- If the window is larger than 900px, the center of the map and the zoom is reset, the legend is made visible, and the view legend button is removed. The timeline's value is set to the `dates[dateIndex]` it gets back from `selectChangeHandler()`. This is the second part of what keeps the timeline and dropdown synced.
-- If the window is smaller than 900px, the center of the map and zoom is reset, the view legend button is made visible, and the legend is hidden.
+- The `reizeHandler()` function is added as an event listener to `window` and will run every time the window size is changed.
+- The function splits between desktop (900px or more) and mobile widths. It handles the display and hiding of the buttons on mobile and the legend on desktop. It also adjusts the center and view of the map as needed.
+- At a desktop size, the timeline is set to the date that is returned by the `selectChangeHandler()`. This is what transfers the information from the dropdown to the timeline when a user switches from desktop to mobile, keeping them in sync.
