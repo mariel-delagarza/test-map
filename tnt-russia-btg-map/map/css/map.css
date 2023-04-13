@@ -80,7 +80,7 @@ select {
     grid-gap: 5px;
     width: 250px;
     max-height: 500px;
-    overflow-y: scroll;
+    overflow: hidden;
     margin: 0 0 16px;
   }
 
